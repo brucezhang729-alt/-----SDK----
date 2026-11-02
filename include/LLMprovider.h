@@ -23,11 +23,11 @@ namespace Ai_chat_sdk
             // 模型是否有效
             virtual bool isAvailable() const = 0;
             // 发送消息 全量返回
-            virtual void sendMessage(const std::vector<Message>&messages,
+            virtual std::string sendMessage(const std::vector<Message>&messages,
                                      const std::map<std::string,std::string>&requestConfig,
                                      std::function<void(const std::string&)> callback) = 0;
             // 发送信息 增量返还 流式响应
-            virtual void sendMessageStream(const std::vector<Message>&messages,
+            virtual std::string sendMessageStream(const std::vector<Message>&messages,
                                            const std::map<std::string,std::string>&requestConfig,
                                            std::function<void(const std::string&,bool)> callback) = 0;
             protected:

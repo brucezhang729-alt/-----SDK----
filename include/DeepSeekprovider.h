@@ -16,14 +16,16 @@ namespace Ai_chat_sdk
             std::string getModelDescription() override;
             // 模型是否有效
             bool isAvailable() const override;
-            // 发送消息 全量返回；当前尚未实现，调用会抛出 std::logic_error。
-            void sendMessage(const std::vector<Message>&messages,
+            // 返回完整回复，并在成功时调用非空回调一次；请求失败返回空字符串。
+            std::string sendMessage(const std::vector<Message>&messages,
                                      const std::map<std::string,std::string>&requestConfig,
                                      std::function<void(const std::string&)> callback) override;
             // 发送信息 增量返还 流式响应；当前尚未实现，调用会抛出 std::logic_error。
-            void sendMessageStream(const std::vector<Message>&messages,
+            std::string sendMessageStream(const std::vector<Message>&messages,
                                            const std::map<std::string,std::string>&requestConfig,
                                            std::function<void(const std::string&,bool)> callback) override;
+        private:
+            std::string _modelName = "deepseek-flash";
     }; // end DeepSeekprovider
 
 }
