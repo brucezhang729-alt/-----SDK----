@@ -26,7 +26,7 @@ namespace Bite
 // 文件名和行号由 spdlog 的 source_loc 传递，并通过日志格式输出。
 #define TRC(...) SPDLOG_LOGGER_CALL(::Bite::Logger::GetLogger(), ::spdlog::level::trace, __VA_ARGS__)
 #define DBG(...) SPDLOG_LOGGER_CALL(::Bite::Logger::GetLogger(), ::spdlog::level::debug, __VA_ARGS__)
-#define INF(...) SPDLOG_LOGGER_CALL(::Bite::Logger::GetLogger(), ::spdlog::level::info, __VA_ARGS__)
+#define INFO(...) SPDLOG_LOGGER_CALL(::Bite::Logger::GetLogger(), ::spdlog::level::info, __VA_ARGS__)
 #define WRN(...) SPDLOG_LOGGER_CALL(::Bite::Logger::GetLogger(), ::spdlog::level::warn, __VA_ARGS__)
 #define ERR(...) SPDLOG_LOGGER_CALL(::Bite::Logger::GetLogger(), ::spdlog::level::err, __VA_ARGS__)
 #define CRI(...) SPDLOG_LOGGER_CALL(::Bite::Logger::GetLogger(), ::spdlog::level::critical, __VA_ARGS__)
