@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <ctime>
+#include<mutex>
+#include<vector>
 
 namespace Ai_chat_sdk
 {
@@ -11,10 +13,11 @@ namespace Ai_chat_sdk
         std::string _role; // 角色
         std::string _content; // 内容
         std::time_t _timestamp; // 时间戳
+
+        // 构造
+        Message(const std::string& role, const std::string& content)
+            : _role(role), _content(content), _timestamp(std::time(nullptr)) {}
     };
-    // 构造
-    Message(const std::string& role, const std::string& content)
-        :_role(role), _content(content) {}
 
 
      // 模型公共信息
@@ -38,7 +41,7 @@ struct ModelInfo
     std::string _endpoint; // 模型接口地址
     bool _isactive = false; // 模型是否可用
 
-    ModelInfo(const std::string& modelName="", const std::string& modeldescription="", const std::string& modelProvider="", const std::string& endpoint="", bool isactive)
+    ModelInfo(const std::string& modelName="", const std::string& modeldescription="", const std::string& modelProvider="", const std::string& endpoint="", bool isactive=false)
         : _modelName(modelName), _modeldescription(modeldescription), _modelProvider(modelProvider), _endpoint(endpoint), _isactive(isactive) {}
 };
 
@@ -52,7 +55,7 @@ struct Session
     std::time_t _lastUpdateTime; // 最后更新时间
 
     Session(const std::string& modelName="")
-        :_modelName(modelName) 
+        : _modelName(modelName), _createTime(std::time(nullptr)), _lastUpdateTime(_createTime)
     {}
 };
     // 通过Ollama接入本地模型
